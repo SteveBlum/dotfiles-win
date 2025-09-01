@@ -1,0 +1,12 @@
+[include]
+  path = ~/.gitconfig.env
+[core]
+  editor = notepad
+[commit]
+  gpgsign = true
+[tag]
+  gpgsign = true
+[gpg]
+  program = gpg
+[init]
+  defaultBranch = main
