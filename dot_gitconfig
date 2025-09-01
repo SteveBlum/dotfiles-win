@@ -2,6 +2,7 @@
   path = ~/.gitconfig.env
 [core]
   editor = notepad
+	sshCommand = C:\\\\Windows\\\\System32\\\\OpenSSH\\\\ssh.exe
 [commit]
   gpgsign = true
 [tag]
