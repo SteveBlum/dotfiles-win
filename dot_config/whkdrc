@@ -11,8 +11,10 @@ alt + i                 : komorebic toggle-shortcuts
 # The apps will be focused if open, or launched if not open
 # alt + f                 : if ($wshell.AppActivate('Firefox') -eq $False) { start firefox }
 # alt + b                 : if ($wshell.AppActivate('Chrome') -eq $False) { start chrome }
+alt + e                 : start explorer
+alt + q			: start wt
 
-alt + q                 : komorebic close
+alt + c                 : komorebic close
 alt + m                 : komorebic minimize
 
 # Focus windows
