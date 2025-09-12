@@ -45,8 +45,8 @@
                 "hidden": false,
                 "name": "PowerShell",
                 "opacity": 70,
-                "useAcrylic": false,
-                "source": "Windows.Terminal.PowershellCore"
+                "source": "Windows.Terminal.PowershellCore",
+                "useAcrylic": false
             },
             {
                 "colorScheme": "Catppuccin Mocha",
@@ -61,8 +61,8 @@
                 "icon": "ms-appx:///ProfileIcons/pwsh.png",
                 "name": "PowerShell (Admin)",
                 "opacity": 70,
-                "useAcrylic": false,
-                "startingDirectory": "%USERPROFILE%"
+                "startingDirectory": "%USERPROFILE%",
+                "useAcrylic": false
             },
             {
                 "colorScheme": "Catppuccin Mocha",
@@ -70,7 +70,7 @@
                 "hidden": false,
                 "name": "Eingabeaufforderung",
                 "opacity": 70,
-                "useAcrylic": false,
+                "useAcrylic": false
             },
             {
                 "colorScheme": "Catppuccin Mocha",
@@ -78,8 +78,8 @@
                 "hidden": false,
                 "name": "Azure Cloud Shell",
                 "opacity": 70,
-                "useAcrylic": false,
-                "source": "Windows.Terminal.Azure"
+                "source": "Windows.Terminal.Azure",
+                "useAcrylic": false
             },
             {
                 "colorScheme": "Catppuccin Mocha",
@@ -87,8 +87,8 @@
                 "hidden": false,
                 "name": "Git Bash",
                 "opacity": 70,
-                "useAcrylic": false,
-                "source": "Git"
+                "source": "Git",
+                "useAcrylic": false
             },
             {
                 "colorScheme": "Catppuccin Mocha",
@@ -96,8 +96,8 @@
                 "hidden": false,
                 "name": "rancher-desktop",
                 "opacity": 70,
-                "useAcrylic": false,
-                "source": "Microsoft.WSL"
+                "source": "Microsoft.WSL",
+                "useAcrylic": false
             },
             {
                 "colorScheme": "Catppuccin Mocha",
@@ -105,8 +105,8 @@
                 "hidden": false,
                 "name": "openSUSE-Tumbleweed",
                 "opacity": 70,
-                "useAcrylic": false,
-                "source": "Microsoft.WSL"
+                "source": "Microsoft.WSL",
+                "useAcrylic": false
             }
         ]
     },
@@ -136,5 +136,6 @@
             "yellow": "#F9E2AF"
         }
     ],
-    "themes": []
+    "themes": [],
+    "useAcrylicInTabRow": true
 }
