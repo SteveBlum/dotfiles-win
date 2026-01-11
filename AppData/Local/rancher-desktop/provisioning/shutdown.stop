@@ -1,0 +1,2 @@
+#!/bin/sh
+/etc/local.d/gpg-agent-relay.sh stop

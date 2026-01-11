@@ -1,0 +1,3 @@
+#!/bin/sh
+apk add gpg socat bash
+/etc/local.d/gpg-agent-relay.sh start
