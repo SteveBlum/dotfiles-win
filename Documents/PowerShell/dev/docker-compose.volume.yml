@@ -1,0 +1,9 @@
+services:
+  dev:
+    volumes:
+      - dev-workspace:/root/workspace
+
+volumes:
+  dev-workspace:
+    name: ${WORKSPACE_VOLUME}
+    driver: local

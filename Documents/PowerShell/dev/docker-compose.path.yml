@@ -1,0 +1,6 @@
+services:
+  dev:
+    volumes:
+      - type: bind
+        source: ${WORKSPACE_PATH}
+        target: /root/workspace

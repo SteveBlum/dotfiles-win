@@ -1,5 +1,3 @@
-version: '3.9'
-
 services:
   dev:
     image: "${DOCKER_DEV_ENV}:${DOCKER_DEV_TAG}"
@@ -62,7 +60,6 @@ services:
         target: /var/run/docker.sock
 
       # Named volumes
-      - dev-workspace:/root/workspace
       - dev-history:/root/.history
       - dev-local:/root/.local
       - dev-pipx:/root/.pipx
@@ -74,22 +71,19 @@ services:
 volumes:
   dev-history:
     name: dev-history
-    external: true
+    driver: local
   dev-local:
     name: dev-local
-    external: true
+    driver: local
   dev-pipx:
     name: dev-pipx
-    external: true
+    driver: local
   dev-npm:
     name: dev-npm
-    external: true
+    driver: local
   dev-copilot:
     name: dev-copilot
-    external: true
+    driver: local
   dev-azure:
     name: dev-azure
-    external: true
-  dev-workspace:
-    name: main
-    external: true
+    driver: local
