@@ -34,14 +34,20 @@ services:
         target: /root/.npmrc
       # GPG directory (maps expected files)
       - type: bind
-        source: "${GPG_DIRECTORY}"
-        target: /root/.gnupg
+        source: "${GPG_DIRECTORY}/pubring.kbx"
+        target: /root/.gnupg/pubring.kbx
       - type: bind
-        source: "/run/user/1000/gnupg/S.gpg-agent"
-        target: /root/.gnupg/S.gpg-agent
+        source: "${GPG_DIRECTORY}/trustdb.gpg"
+        target: /root/.gnupg/trustdb.gpg
       - type: bind
-        source: "/run/user/1000/gnupg/S.gpg-agent.ssh"
+        source: "${GPG_DIRECTORY}/private-keys-v1.d"
+        target: /root/.gnupg/private-keys-v1.d
+      - type: bind
+        source: "/root/.gnupg/S.gpg-agent.ssh"
         target: /root/.gnupg/S.gpg-agent.ssh
+      - type: bind
+        source: "/root/.gnupg/S.gpg-agent"
+        target: /root/.gnupg/S.gpg-agent
       # Shared dir
       - type: bind
         source: "${SHARED_DIRECTORY}"
@@ -67,16 +73,23 @@ services:
 
 volumes:
   dev-history:
-    driver: local
+    name: dev-history
+    external: true
   dev-local:
-    driver: local
+    name: dev-local
+    external: true
   dev-pipx:
-    driver: local
+    name: dev-pipx
+    external: true
   dev-npm:
-    driver: local
+    name: dev-npm
+    external: true
   dev-copilot:
-    driver: local
+    name: dev-copilot
+    external: true
   dev-azure:
-    driver: local
+    name: dev-azure
+    external: true
   dev-workspace:
-    driver: local
+    name: main
+    external: true
