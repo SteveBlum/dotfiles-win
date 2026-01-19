@@ -12,12 +12,12 @@
             "keys": "ctrl+c"
         },
         {
-            "id": "Terminal.PasteFromClipboard",
-            "keys": "ctrl+v"
-        },
-        {
             "id": "Terminal.FindText",
             "keys": "ctrl+shift+f"
+        },
+        {
+            "id": "Terminal.PasteFromClipboard",
+            "keys": "ctrl+v"
         },
         {
             "id": "Terminal.DuplicatePaneAuto",
@@ -92,21 +92,33 @@
             },
             {
                 "colorScheme": "Catppuccin Mocha",
-                "guid": "{9f073fc9-fd7d-56ee-aee8-af4fb2d9df4c}",
-                "hidden": false,
-                "name": "rancher-desktop",
-                "opacity": 70,
-                "source": "Microsoft.WSL",
-                "useAcrylic": false
-            },
-            {
-                "colorScheme": "Catppuccin Mocha",
                 "guid": "{784939b0-6c7d-570d-88ec-3cde8821709b}",
                 "hidden": false,
                 "name": "openSUSE-Tumbleweed",
                 "opacity": 70,
                 "source": "Microsoft.WSL",
                 "useAcrylic": false
+            },
+            {
+                "colorScheme": "Catppuccin Mocha",
+                "commandline": "\"C:\\Program Files\\PowerShell\\7\\pwsh.exe\"",
+                "font": 
+                {
+                    "face": "JetBrainsMono Nerd Font"
+                },
+                "guid": "{b4ee0c36-0f69-4fbc-b692-2b649238b9bc}",
+                "hidden": false,
+                "icon": "ms-appx:///ProfileIcons/pwsh.png",
+                "name": "PowerShell (solid background)",
+                "opacity": 100,
+                "startingDirectory": "%USERPROFILE%",
+                "useAcrylic": false
+            },
+            {
+                "guid": "{51af633a-463c-5646-a61e-32cbed43bad6}",
+                "hidden": false,
+                "name": "rancher-desktop",
+                "source": "Microsoft.WSL"
             }
         ]
     },
