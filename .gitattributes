@@ -1,0 +1,6 @@
+* text=auto
+
+# Force LF for Shell scripts used in WSL
+*.sh      text eol=lf
+*.start   text eol=lf
+*.stop    text eol=lf
