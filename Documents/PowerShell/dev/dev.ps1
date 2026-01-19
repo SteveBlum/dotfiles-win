@@ -12,9 +12,9 @@ if (-not (Test-Path "$PSScriptRoot/$name.env")) {
 }
 
 # Check if docker compose services are already running
-$runningServices = docker compose --env-file "$PSScriptRoot/$name.env" -f docker-compose.dev.yml ps --status running -q
+$runningServices = docker compose --env-file "$PSScriptRoot/$name.env" -f "$PSScriptRoot/docker-compose.dev.yml" ps --status running -q
 
 if ($devInitCalled -or ([string]::IsNullOrEmpty($runningServices))) {
-    docker compose --env-file "$PSScriptRoot/$name.env" -f docker-compose.dev.yml up -d
+    docker compose --env-file "$PSScriptRoot/$name.env" -f "$PSScriptRoot/docker-compose.dev.yml" up -d
 }
 docker attach dev
