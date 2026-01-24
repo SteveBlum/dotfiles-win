@@ -1,3 +1,20 @@
+# Checks whether a our script was already run by using a flag file. 
+function Test-ScriptRunOnce {
+    $ScriptName = "startup"
+    $flagFile = Join-Path $env:TEMP "$($ScriptName)_run.flag"
+    $lastBoot = (Get-CimInstance Win32_OperatingSystem).LastBootUpTime
+    if (Test-Path $flagFile) {
+        $fileCreated = (Get-Item $flagFile).CreationTime
+        
+        if ($fileCreated -gt $lastBoot) {
+            # Script has already run since the last boot
+            return $true
+        }
+    }
+    New-Item -Path $flagFile -ItemType File -Force | Out-Null
+    return $false
+}
+
 function Add-ToPath {
     param (
         [Parameter(Mandatory=$true)]
@@ -36,28 +53,30 @@ function Add-ToPath {
     }
 }
 
-gpg-connect-agent /bye
-Add-ToPath -NewPath "$HOME\bin"
-Set-PSRepository -Name 'PSGallery' -InstallationPolicy Trusted
-Install-Module -Name BurntToast -Scope CurrentUser
+if(-not (Test-ScriptRunOnce)) {
+  gpg-connect-agent /bye
+  Add-ToPath -NewPath "$HOME\bin"
+  Set-PSRepository -Name 'PSGallery' -InstallationPolicy Trusted
+  Install-Module -Name BurntToast -Scope CurrentUser
 
-function Confirm-FileExists {
-    param (
-        [Parameter(Mandatory=$true)]
-        [string]$FileName,
+  function Confirm-FileExists {
+      param (
+          [Parameter(Mandatory=$true)]
+          [string]$FileName,
 
-        [Parameter(Mandatory=$true)]
-        [string]$DownloadUrl
-    )
+          [Parameter(Mandatory=$true)]
+          [string]$DownloadUrl
+      )
 
-    if (-not (Test-Path -Path "$FileName")) {
-        # Define the button that opens the URL
-        $Button = New-BTButton -Content "Download $FileName" -Arguments $DownloadUrl
-        $Header = New-BTHeader -Id 'FileCheck' -Title 'File Not Found'
-        New-BurntToastNotification -Text "The required file '$FileName' is missing from the directory $HOME\bin" -Button $Button -Header $Header
-    }
+      if (-not (Test-Path -Path "$FileName")) {
+          # Define the button that opens the URL
+          $Button = New-BTButton -Content "Download $FileName" -Arguments $DownloadUrl
+          $Header = New-BTHeader -Id 'FileCheck' -Title 'File Not Found'
+          New-BurntToastNotification -Text "The required file '$FileName' is missing from the directory $HOME\bin" -Button $Button -Header $Header
+      }
+  }
+
+  Confirm-FileExists -FileName "$HOME\bin\npiperelay.exe" -DownloadUrl "https://github.com/albertony/npiperelay/releases/download/v1.9.2/npiperelay_windows_amd64.exe"
+  Confirm-FileExists -FileName "$HOME\bin\wsl-ssh-pageant-amd64-gui.exe" -DownloadUrl "https://github.com/benpye/wsl-ssh-pageant/releases/download/20201121.2/wsl-ssh-pageant-amd64-gui.exe"
+  New-BurntToastNotification -Text "Startup Complete"
 }
-
-Confirm-FileExists -FileName "$HOME\bin\npiperelay.exe" -DownloadUrl "https://github.com/albertony/npiperelay/releases/download/v1.9.2/npiperelay_windows_amd64.exe"
-Confirm-FileExists -FileName "$HOME\bin\wsl-ssh-pageant-amd64-gui.exe" -DownloadUrl "https://github.com/benpye/wsl-ssh-pageant/releases/download/20201121.2/wsl-ssh-pageant-amd64-gui.exe"
-New-BurntToastNotification -Text "Startup Complete"
