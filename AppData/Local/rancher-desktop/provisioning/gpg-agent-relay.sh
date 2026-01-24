@@ -46,6 +46,8 @@ main() {
     return $result
     ;;
   foreground)
+    rm -f "$PIDFILE"
+    rm -r /root/.gnupg/S.*
     relay ;;
   *)
     die "Usage:\n  gpg-agent-relay start\n  gpg-agent-relay stop\n  gpg-agent-relay status\n  gpg-agent-relay foreground" ;;
