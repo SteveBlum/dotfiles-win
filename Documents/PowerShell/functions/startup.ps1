@@ -4,7 +4,7 @@ function Test-ScriptRunOnce {
     $flagFile = Join-Path $env:TEMP "$($ScriptName)_run.flag"
     $lastBoot = (Get-CimInstance Win32_OperatingSystem).LastBootUpTime
     if (Test-Path $flagFile) {
-        $fileCreated = (Get-Item $flagFile).CreationTime
+        $fileCreated = (Get-Item $flagFile).LastWriteTime
         
         if ($fileCreated -gt $lastBoot) {
             # Script has already run since the last boot
