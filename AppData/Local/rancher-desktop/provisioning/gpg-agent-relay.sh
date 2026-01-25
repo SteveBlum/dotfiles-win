@@ -72,7 +72,7 @@ relay() {
   local wingnupghome="${localappdatafolder}/gnupg"
   local npiperelay="${homefolder}/bin/npiperelay.exe"
   local wslsshpageant="${homefolder}/bin/wsl-ssh-pageant-amd64-gui.exe"
-  local gpgconnectagent="/mnt/c/Program Files (x86)/GnuPG/bin/gpg-connect-agent.exe"
+  local gpgconnectagent="/mnt/c/Program Files/GnuPG/bin/gpg-connect-agent.exe"
 
   local gpgagentsocket
   local sshagentsocket
