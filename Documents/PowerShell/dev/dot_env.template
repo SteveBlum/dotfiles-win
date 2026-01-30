@@ -13,6 +13,7 @@ NPM_FILE=~/.npmrc
 GPG_DIRECTORY=~/.gnupg
 SHARED_DIRECTORY=~/shared
 KUBE_DIRECTORY=~/.kube
+OBSIDIAN_VAULT_DIRECTORY=~/vault
 
 # Identity / git defaults
 GIT_EMAIL=

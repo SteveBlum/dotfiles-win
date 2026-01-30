@@ -41,6 +41,9 @@ services:
         source: "${GPG_DIRECTORY}/private-keys-v1.d"
         target: /root/.gnupg/private-keys-v1.d
       - type: bind
+        source: "${OBSIDIAN_VAULT_DIRECTORY}"
+        target: /root/obsidian-vault
+      - type: bind
         source: "/root/.gnupg/S.gpg-agent.ssh"
         target: /root/.gnupg/S.gpg-agent.ssh
       - type: bind
