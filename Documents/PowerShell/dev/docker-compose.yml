@@ -17,6 +17,7 @@ services:
       GIT_SIGNINGKEY: "${GIT_SIGNINGKEY}"
       GEMINI_API_KEY: "${GEMINI_API_KEY}"
       CLAUDE_API_KEY: "${CLAUDE_API_KEY}"
+      GOOGLE_CLOUD_PROJECT_ID: "${GOOGLE_CLOUD_PROJECT_ID}"
       HISTFILE: "/root/.history/.bash_history"
     ports:
       - "3010:3010"
