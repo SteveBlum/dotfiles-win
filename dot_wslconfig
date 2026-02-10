@@ -1,0 +1,5 @@
+[wsl2]
+networkingMode = mirrored
+dnsTunneling=true
+bestEffortDnsParsing=true
+ipv6=false
