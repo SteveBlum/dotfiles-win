@@ -30,7 +30,7 @@ services:
       # npmrc file
       - type: bind
         source: "${NPM_FILE}"
-        target: /root/.npmrc
+        target: /root/.npmrc.host
       # GPG directory (maps expected files)
       - type: bind
         source: "${GPG_DIRECTORY}/pubring.kbx"
