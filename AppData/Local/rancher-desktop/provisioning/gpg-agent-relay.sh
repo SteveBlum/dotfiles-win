@@ -18,6 +18,11 @@
 export GNUPGHOME="$HOME/.gnupg"
 PIDFILE="$GNUPGHOME/gpg-agent-relay.pid"
 
+# Ensure GNUPGHOME exists with correct permissions
+if [[ ! -d "$GNUPGHOME" ]]; then
+  mkdir -m 700 -p "$GNUPGHOME" || die "Failed to create $GNUPGHOME"
+fi
+
 die() {
   # shellcheck disable=SC2059
   printf "$1\n" >&2
@@ -47,7 +52,7 @@ main() {
     ;;
   foreground)
     rm -f "$PIDFILE"
-    rm -r /root/.gnupg/S.*
+    rm -f "$GNUPGHOME"/S.* 2>/dev/null || true
     relay ;;
   *)
     die "Usage:\n  gpg-agent-relay start\n  gpg-agent-relay stop\n  gpg-agent-relay status\n  gpg-agent-relay foreground" ;;
