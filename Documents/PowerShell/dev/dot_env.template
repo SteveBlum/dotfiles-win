@@ -4,6 +4,9 @@
 DOCKER_DEV_ENV=ghcr.io/steveblum/sdev
 DOCKER_DEV_TAG=latest
 
+# Custom environment variables
+CUSTOM_ENV_VARS=
+
 # Workspace mount (bind). Set to the host directory you want mounted at /root/workspace
 WORKSPACE_DIR=./workspace
 
