@@ -20,9 +20,11 @@ services:
       GOOGLE_CLOUD_PROJECT_ID: "${GOOGLE_CLOUD_PROJECT_ID}"
       HISTFILE: "/root/.history/.bash_history"
       CUSTOM_ENV_VARS: "${CUSTOM_ENV_VARS}"
+      OM_URL: http://openmemory-backend:3030
     ports:
       - "3010:3010"
-
+    networks:
+      - copilot-network
     volumes:
       # SSH keys
       - type: bind
@@ -73,6 +75,64 @@ services:
       - dev-azure:/root/.azure
     working_dir: /root/workspace
 
+  openmemory-backend:
+    image: "ghcr.io/steveblum/openmemory:backend-v1.2.3"
+    container_name: openmemory-backend
+    restart: unless-stopped
+    environment:
+      - OM_PORT=3030
+      - OM_MODE=${OM_MODE:-standard}
+      - OM_METADATA_BACKEND=sqlite
+      - OM_DB_PATH=/data/openmemory.sqlite
+      - OM_TIER=${OM_TIER:-hybrid}
+      - OM_API_KEY=${OM_API_KEY:-ABC}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-ABC}
+      - OM_OPENAI_API_KEY=${OM_OPENAI_API_KEY:-ABC}
+      - OM_OPENAI_BASE_URL=${OM_OPENAI_BASE_URL:-http://github-copilot-svcs:3020/v1}
+      - OM_OPENAI_MODEL=${OM_OPENAI_MODEL:-gpt-5.4-mini}
+    ports:
+      - "3030:3030"
+    volumes:
+      - openmemory-data:/data
+    networks:
+      - copilot-network
+    healthcheck:
+      test:
+        [
+          'CMD',
+          'node',
+          '-e',
+          'require("http").get("http://localhost:3030/health",(res)=>process.exit(res.statusCode===200?0:1)).on("error",()=>process.exit(1))',
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+  github-copilot-svcs:
+    image: ghcr.io/privapps/github-copilot-svcs:0.0.3
+    container_name: github-copilot-svcs
+    ports:
+      - "3020:3020"
+    environment:
+      - COPILOT_PORT=3020
+      - LOG_LEVEL=info
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3020/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - copilot-network
+    volumes: 
+      - copilot-data:/home/appuser/.local/share/github-copilot-svcs
+
+networks:
+  copilot-network:
+    driver: bridge
+
 volumes:
   dev-history:
     name: dev-history
@@ -92,3 +152,9 @@ volumes:
   dev-azure:
     name: dev-azure
     driver: local
+  openmemory-data:
+    name: openmemory-data
+    driver: local
+  copilot-data:
+    name: copilot-data
+ 
