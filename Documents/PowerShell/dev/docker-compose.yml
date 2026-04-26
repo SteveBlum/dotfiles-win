@@ -2,6 +2,7 @@ services:
   dev:
     image: "${DOCKER_DEV_ENV}:${DOCKER_DEV_TAG}"
     container_name: dev
+    restart: unless-stopped
     hostname: dev
     privileged: true
     stdin_open: true
