@@ -26,6 +26,9 @@ services:
       OM_URL: http://openmemory-backend:3030
     ports:
       - "3010:3010"
+      - "3022:3022"
+      - "3080:3080"
+      - "3443:3443"
     networks:
       - copilot-network
     volumes:
