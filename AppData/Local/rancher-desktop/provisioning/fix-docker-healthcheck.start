@@ -1,0 +1,3 @@
+#!/bin/sh
+# Fix curl 8.21.0 healthcheck rejection in Rancher Desktop OpenRC init
+sed -i 's|http://\./_ping|http://localhost/_ping|g' /etc/init.d/docker
