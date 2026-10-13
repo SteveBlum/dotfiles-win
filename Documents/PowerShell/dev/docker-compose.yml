@@ -77,6 +77,7 @@ services:
       - dev-local:/root/.local
       - dev-pipx:/root/.pipx
       - dev-npm:/root/.npm
+      - dev-cargo:/root/.cargo
       - dev-copilot:/root/.config/github-copilot
       - dev-azure:/root/.azure
     working_dir: /root/workspace
@@ -156,6 +157,9 @@ volumes:
     name: dev-copilot
     driver: local
   dev-azure:
+    name: dev-azure
+    driver: local
+  dev-cargo:
     name: dev-azure
     driver: local
   openmemory-data:
