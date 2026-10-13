@@ -160,7 +160,7 @@ volumes:
     name: dev-azure
     driver: local
   dev-cargo:
-    name: dev-azure
+    name: dev-cargo
     driver: local
   openmemory-data:
     name: openmemory-data
