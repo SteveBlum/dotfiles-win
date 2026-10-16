@@ -9,7 +9,7 @@ if ([string]::IsNullOrEmpty($name)) {
 }
 
 $action = $action.ToLowerInvariant()
-$valid = @("start","stop","restart","status","logs")
+$valid = @("start","stop","attach","restart","status","logs")
 if ($valid -notcontains $action) {
     Write-Host "Invalid action: $action"
     Write-Host "Usage: dev.ps1 <environment_name> [start|stop|attach|restart|status|logs]"
