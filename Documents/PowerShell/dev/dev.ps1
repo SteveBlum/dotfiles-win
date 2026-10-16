@@ -4,7 +4,7 @@ param(
 )
 
 if ([string]::IsNullOrEmpty($name)) {
-    Write-Host "Usage: dev.ps1 <environment_name> [start|stop|restart|status|logs]"
+    Write-Host "Usage: dev.ps1 <environment_name> [start|stop|attach|restart|status|logs]"
     exit 1
 }
 
@@ -12,7 +12,7 @@ $action = $action.ToLowerInvariant()
 $valid = @("start","stop","restart","status","logs")
 if ($valid -notcontains $action) {
     Write-Host "Invalid action: $action"
-    Write-Host "Usage: dev.ps1 <environment_name> [start|stop|restart|status|logs]"
+    Write-Host "Usage: dev.ps1 <environment_name> [start|stop|attach|restart|status|logs]"
     exit 1
 }
 
@@ -65,6 +65,15 @@ switch ($action) {
 
         if ($isPathWorkspace) { $env:WORKSPACE_PATH = "$PWD\$name" } else { $env:WORKSPACE_VOLUME = $name }
         Invoke-Compose "down"
+    }
+
+    "attach" {
+        if (-not $isPathWorkspace -and -not (Test-Path "$envFile")) {
+            Write-Host "Environment file '$envFile' is missing. Run 'start' to initialize the workspace first."
+            exit 1
+        }
+        if ($isPathWorkspace) { $env:WORKSPACE_PATH = "$PWD\$name" } else { $env:WORKSPACE_VOLUME = $name }
+        Invoke-Compose "exec dev tmux new-session -t 0 -s secondary"
     }
 
     "restart" {
