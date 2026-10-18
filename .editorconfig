@@ -1,0 +1,13 @@
+root = true
+
+[**]
+end_of_line = crlf
+
+[*.json]
+insert_final_newline = false
+
+[**/*Microsoft.WindowsTerminal_*/**/settings.json]
+end_of_line = lf
+
+[*.{sh,start,stop}]
+end_of_line = lf

@@ -1,6 +1,10 @@
-* text=auto
+# Generally, this is for Windows configuraton, which uses CRLF line endings
+* text eol=crlf
 
-# Force LF for Shell scripts used in WSL
+# ... but Windows Terminal doesn't - it uses LF line endings
+AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json text eol=lf
+
+# Rancher Desktop hooks use LF line endings, since they run in a Linux environment
 *.sh      text eol=lf
 *.start   text eol=lf
 *.stop    text eol=lf

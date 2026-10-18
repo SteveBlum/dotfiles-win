@@ -92,15 +92,6 @@
             },
             {
                 "colorScheme": "GruvboxDark",
-                "guid": "{784939b0-6c7d-570d-88ec-3cde8821709b}",
-                "hidden": false,
-                "name": "openSUSE-Tumbleweed",
-                "opacity": 70,
-                "source": "Microsoft.WSL",
-                "useAcrylic": false
-            },
-            {
-                "colorScheme": "GruvboxDark",
                 "commandline": "\"C:\\Program Files\\PowerShell\\7\\pwsh.exe\"",
                 "font": 
                 {
@@ -113,12 +104,6 @@
                 "opacity": 100,
                 "startingDirectory": "%USERPROFILE%",
                 "useAcrylic": false
-            },
-            {
-                "guid": "{51af633a-463c-5646-a61e-32cbed43bad6}",
-                "hidden": false,
-                "name": "rancher-desktop",
-                "source": "Microsoft.WSL"
             }
         ]
     },
