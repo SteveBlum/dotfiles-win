@@ -76,7 +76,6 @@ services:
       - dev-history:/root/.history
       - dev-local:/root/.local
       - dev-pipx:/root/.pipx
-      - dev-npm:/root/.npm
       - dev-cargo:/root/.cargo
       - dev-copilot:/root/.config/github-copilot
       - dev-azure:/root/.azure
