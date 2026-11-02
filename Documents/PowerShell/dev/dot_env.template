@@ -4,9 +4,6 @@
 DOCKER_DEV_ENV=ghcr.io/steveblum/sdev
 DOCKER_DEV_TAG=latest
 
-# Custom environment variables
-CUSTOM_ENV_VARS=
-
 # Workspace mount (bind). Set to the host directory you want mounted at /root/workspace
 WORKSPACE_DIR=./workspace
 
@@ -23,11 +20,12 @@ GIT_EMAIL=
 GIT_USER=
 GIT_SIGNINGKEY=
 
-# LLM keys
-GEMINI_API_KEY=
-CLAUDE_API_KEY=
-GOOGLE_CLOUD_PROJECT_ID=
-
 # For nvim GitLab plugin
 GITLAB_TOKEN=
 GITLAB_URL=
+
+BWS_OPENCODE_TOKEN=
+BWS_OPENCODE_PROJECT_ID=
+BWS_ACCESS_TOKEN=
+BWS_PROJECT_ID=
+GPG_FINGERPRINT=

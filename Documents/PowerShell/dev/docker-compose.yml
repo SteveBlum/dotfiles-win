@@ -16,14 +16,15 @@ services:
       GIT_EMAIL: "${GIT_EMAIL}"
       GIT_USER: "${GIT_USER}"
       GIT_SIGNINGKEY: "${GIT_SIGNINGKEY}"
-      GEMINI_API_KEY: "${GEMINI_API_KEY}"
-      CLAUDE_API_KEY: "${CLAUDE_API_KEY}"
       GITLAB_TOKEN: "${GITLAB_TOKEN}"
       GITLAB_URL: "${GITLAB_URL}"
-      GOOGLE_CLOUD_PROJECT_ID: "${GOOGLE_CLOUD_PROJECT_ID}"
       HISTFILE: "/root/.history/.bash_history"
-      CUSTOM_ENV_VARS: "${CUSTOM_ENV_VARS}"
       OM_URL: http://openmemory-backend:3030
+      GPG_FINGERPRINT: "${GPG_FINGERPRINT}"
+      BWS_OPENCODE_TOKEN: "${BWS_OPENCODE_TOKEN}"
+      BWS_OPENCODE_PROJECT_ID: "${BWS_OPENCODE_PROJECT_ID}"
+      BWS_ACCESS_TOKEN: "${BWS_ACCESS_TOKEN}"
+      BWS_PROJECT_ID: "${BWS_PROJECT_ID}"
     ports:
       - "3010:3010"
       - "3022:3022"
@@ -54,10 +55,10 @@ services:
         source: "${OBSIDIAN_VAULT_DIRECTORY}"
         target: /root/obsidian-vault
       - type: bind
-        source: "/root/.gnupg/S.gpg-agent.ssh"
+        source: "${GPG_DIRECTORY}/S.gpg-agent.ssh"
         target: /root/.gnupg/S.gpg-agent.ssh
       - type: bind
-        source: "/root/.gnupg/S.gpg-agent"
+        source: "${GPG_DIRECTORY}/S.gpg-agent"
         target: /root/.gnupg/S.gpg-agent
       # Shared dir
       - type: bind
