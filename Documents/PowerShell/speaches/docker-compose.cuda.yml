@@ -1,0 +1,27 @@
+include:
+  - docker-compose.yml
+
+services:
+  wyoming_openai:
+    environment:
+      STT_MODELS: "Systran/faster-distil-whisper-small.en"
+
+  init-speaches:
+    image: ghcr.io/speaches-ai/speaches:0.9.0-rc.3-cuda-12.6.3
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: ["gpu"]
+
+  speaches:
+    image: ghcr.io/speaches-ai/speaches:0.9.0-rc.3-cuda-12.6.3
+    environment:
+      - WHISPER__MODEL=Systran/faster-distil-whisper-small.en
+      - WHISPER__compute_type=int8_float32
+      - CHAT_COMPLETION_BASE_URL=http://172.17.0.1:11434/v1
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: ["gpu"]
