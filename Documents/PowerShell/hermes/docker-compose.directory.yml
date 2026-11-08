@@ -5,3 +5,6 @@ services:
   hermes:
     volumes: !override
       - ~/.hermes:/opt/data
+      - type: bind
+        source: "${OBSIDIAN_VAULT_DIRECTORY}"
+        target: /obsidian-vault

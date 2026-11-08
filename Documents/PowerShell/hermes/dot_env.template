@@ -1,0 +1,2 @@
+# Leave empty to pass through host environment variables
+OBSIDIAN_VAULT_DIRECTORY=~/vault
