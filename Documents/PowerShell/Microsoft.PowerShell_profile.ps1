@@ -14,5 +14,6 @@ Set-PSReadLineKeyHandler -Chord "Ctrl+RightArrow" -Function ForwardWord
 ## Set aliases
 Set-Alias -Name dev -Value "$PSScriptRoot/dev/dev.ps1"
 Set-Alias -Name dev-init -Value "$PSScriptRoot/dev/dev-init.ps1"
+Set-Alias -Name hermes -Value "$PSScriptRoot/hermes/hermes.ps1"
 
 . "$PSScriptRoot/functions/startup.ps1"

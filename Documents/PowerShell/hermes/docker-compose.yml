@@ -1,0 +1,27 @@
+services:
+  hermes:
+    image: nousresearch/hermes-agent:v0.23.0@sha256:adb7890916de63245523492be8f68f9d2095fecbec4e2a6dab7960381f0fc002
+    container_name: hermes
+    restart: unless-stopped
+    command: gateway run
+    ports:
+      - "8642:8642"   # gateway API
+      - "9119:9119"   # dashboard (only reached when HERMES_DASHBOARD=1)
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - hermes-data:/opt/data
+      - ~/.hermes/config.yaml:/opt/data/config.yaml
+      - ~/.hermes/SOUL.md:/opt/data/SOUL.md
+    environment:
+      - HERMES_DASHBOARD=1
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+    deploy:
+      resources:
+        limits:
+          memory: 4G
+          cpus: "2.0"
+
+volumes:
+  hermes-data:
