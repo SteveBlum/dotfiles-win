@@ -48,5 +48,8 @@ switch ($action) {
     }
     "status"  { Invoke-Compose "ps" }
     "logs"    { Invoke-Compose "logs -f" }
-    "setup"   { Invoke-Compose "run --rm --name hermes-setup hermes setup" }
+    "setup"   {
+        Invoke-Compose "run --rm --name hermes-setup hermes setup"
+        Invoke-Compose "run --rm --name hermes-bitwarden-setup hermes secrets bitwarden setup"
+    }
 }
